@@ -1,0 +1,13 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+name = Moe-Ajam
+email = mahmoud.othman.ajam@gmail.com
+	name = Moe-Ajam
+	name = Moe-Ajam
+	name = Moe-Ajam
+[init]
+	defaultBranch = master
+	defaultBranch = main
+[pull]
+	rebase = true
