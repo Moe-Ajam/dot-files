@@ -11,3 +11,5 @@ email = mahmoud.othman.ajam@gmail.com
 	defaultBranch = main
 [pull]
 	rebase = true
+[credential]
+	helper = store
