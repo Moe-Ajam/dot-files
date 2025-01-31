@@ -42,7 +42,31 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+-- Detect if running inside WSL
+local is_wsl = (function()
+	local output = vim.fn.systemlist("uname -r")
+	return not not string.find(output[1] or "", "WSL")
+end)()
+
+-- Set clipboard based on environment
+if is_wsl then
+	-- WSL-specific clipboard integration using win32yank or clip.exe
+	vim.g.clipboard = {
+		name = "Windows Clipboard",
+		copy = {
+			["+"] = "clip.exe",
+			["*"] = "clip.exe",
+		},
+		paste = {
+			["+"] = "powershell.exe -command Get-Clipboard",
+			["*"] = "powershell.exe -command Get-Clipboard",
+		},
+		cache_enabled = 1,
+	}
+else
+	-- macOS or Linux clipboard setup
+	opt.clipboard:append("unnamedplus")
+end
 
 -- split windows
 opt.splitright = true -- split vertical window to the right

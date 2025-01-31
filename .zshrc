@@ -37,13 +37,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-  export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home/"
+  # export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home/"
+  export JAVA_HOME="$(brew --prefix openjdk)"
+  export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
 # Zoxide (better cd)
 eval "$(zoxide init zsh)"
 
-alias cd="z"
+# alias cd="z"
 
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
@@ -54,3 +56,8 @@ alias vim=nvim
 # Obsidian
 alias oo='cd $HOME/Documents/Personal'
 alias or='vim $HOME/Documents/Personal/1_Inbox/*.md'
+
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias 'cd C'= 'cd /mnt/c/'
+fi
