@@ -52,14 +52,14 @@ end)()
 if is_wsl then
 	-- WSL-specific clipboard integration using win32yank or clip.exe
 	vim.g.clipboard = {
-		name = "Windows Clipboard",
+		name = "win32yank",
 		copy = {
-			["+"] = "clip.exe",
-			["*"] = "clip.exe",
+			["+"] = "/mnt/c/Windows/win32yank.exe -i",
+			["*"] = "/mnt/c/Windows/win32yank.exe -i",
 		},
 		paste = {
-			["+"] = "powershell.exe -command Get-Clipboard",
-			["*"] = "powershell.exe -command Get-Clipboard",
+			["+"] = "/mnt/c/Windows/win32yank.exe -o",
+			["*"] = "/mnt/c/Windows/win32yank.exe -o",
 		},
 		cache_enabled = 1,
 	}
