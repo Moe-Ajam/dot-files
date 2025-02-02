@@ -9,7 +9,10 @@ fi
 source /home/linuxbrew/.linuxbrew/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 # Initialize Starship
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 eval "$(starship init zsh)"
 
 # History setup

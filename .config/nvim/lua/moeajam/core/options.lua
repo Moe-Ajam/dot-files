@@ -45,27 +45,25 @@ opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or 
 -- Detect if running inside WSL
 local is_wsl = (function()
 	local output = vim.fn.systemlist("uname -r")
-	return not not string.find(output[1] or "", "WSL")
+	return output[1] and output[1]:lower():find("microsoft") ~= nil
 end)()
 
 -- Set clipboard based on environment
 if is_wsl then
-	-- WSL-specific clipboard integration using win32yank or clip.exe
 	vim.g.clipboard = {
-		name = "win32yank",
+		name = "win32yank-wsl",
 		copy = {
-			["+"] = "/mnt/c/Windows/win32yank.exe -i",
-			["*"] = "/mnt/c/Windows/win32yank.exe -i",
+			["+"] = "win32yank.exe -i --crlf",
+			["*"] = "win32yank.exe -i --crlf",
 		},
 		paste = {
-			["+"] = "/mnt/c/Windows/win32yank.exe -o",
-			["*"] = "/mnt/c/Windows/win32yank.exe -o",
+			["+"] = "win32yank.exe -o --lf",
+			["*"] = "win32yank.exe -o --lf",
 		},
-		cache_enabled = 1,
+		cache_enabled = true,
 	}
 else
-	-- macOS or Linux clipboard setup
-	opt.clipboard:append("unnamedplus")
+	vim.opt.clipboard:append("unnamedplus")
 end
 
 -- split windows

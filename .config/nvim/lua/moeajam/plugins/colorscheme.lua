@@ -2,25 +2,34 @@ return {
 	-- rose-pine configuration
 	{
 		"rose-pine/neovim",
-		priority = 1000,
+		priority = 1003,
 		config = function()
 			require("rose-pine").setup({
-				variant = "auto", -- auto, main, moon, or dawn
-				dark_variant = "main", -- main, moon, or dawn
-				dim_inactive_windows = false,
+				variant = "main", -- Options: auto, main, moon, dawn
+				dark_variant = "main",
+				dim_inactive_windows = true,
 				extend_background_behind_borders = true,
 				enable = {
 					terminal = true,
-					legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-					migrations = true, -- Handle deprecated options automatically
+					legacy_highlights = true, -- Improves compatibility for older Neovim versions
+					migrations = true, -- Handles deprecated options automatically
 				},
 				styles = {
 					bold = true,
 					italic = true,
 				},
+				palette = {}, -- Define custom colors if needed
+				groups = {}, -- Define custom highlight groups
+				before_highlight = function() end, -- Hook before highlights are applied
+				highlight_groups = {
+					Normal = { bg = "#000000" }, -- Force pitch black background
+				},
 			})
-			vim.opt.fillchars = { eob = " " }
+
+			-- Apply Rosé Pine colorscheme
 			vim.cmd("colorscheme rose-pine")
+
+			vim.opt.fillchars:append({ eob = " " }) -- Removes `~` on empty lines
 		end,
 	},
 	{
