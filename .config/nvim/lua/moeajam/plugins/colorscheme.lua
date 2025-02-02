@@ -23,6 +23,17 @@ return {
 				before_highlight = function() end, -- Hook before highlights are applied
 				highlight_groups = {
 					Normal = { bg = "#000000" }, -- Force pitch black background
+					NormalNC = { bg = "#000000" }, -- Inactive windows
+					-- LineNr = { bg = "#000000" }, -- Line numbers
+					-- SignColumn = { bg = "#000000" }, -- Sidebars
+					-- StatusLine = { bg = "#000000" }, -- Bottom status line
+					-- StatusLineNC = { bg = "#000000" }, -- Inactive status line
+					-- CursorLine = { bg = "#000000" }, -- Cursor line
+					-- CursorLineNr = { bg = "#000000" }, -- Cursor line number
+					-- WinSeparator = { bg = "#000000" }, -- Window separators
+					-- TelescopeNormal = { bg = "#000000" }, -- Telescope background
+					-- NvimTreeNormal = { bg = "#000000" }, -- NvimTree background
+					-- FloatBorder = { bg = "#000000" }, -- Borders for floating windows
 				},
 			})
 
